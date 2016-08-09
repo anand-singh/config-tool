@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Configurations</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<h1>Configurations</h1>
+		<div class="pull-right">
+			<a href="form.html" th:href="@{/configuration/(form)}">Create Entity</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Parent ID</td>
+					<td>Root</td>
+					<td>Component</td>
+					<td>Environment</td>
+					<td>Brand</td>
+					<td>Locale</td>
+					<td>Entity</td>
+					<td>Created</td>
+					<td>Updated</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${configurations.empty}">
+					<td colspan="10">No messages</td>
+				</tr>
+				<tr th:each="configuration : ${configurations}">
+					<td> <a href="view.html" th:href="@{'/configuration/' + ${configuration.id}}" th:text="${configuration.id}">1</a></td>
+					<td th:text="${configuration.parentId}">0</td>
+					<td th:text="${configuration.rootMaster.id}">Root Master</td>
+					<td th:text="${configuration.componentMaster?.description}">Component Master</td>
+					<td th:text="${configuration.environment?.description}">Environment</td>
+					<td th:text="${configuration.brandMaster?.description}">Brand Master</td>
+					<td th:text="${configuration.localeMaster?.description}">Locale Master</td>
+					<td th:text="${configuration.entityMaster?.description}">Entity Master</td>
+					<td th:text="${#calendars.format(configuration.createdDate)}">July 11, 2012 2:17:16 PM CDT</td>
+					<td th:text="${#calendars.format(configuration.updatedDate)}">July 11, 2012 2:17:16 PM CDT</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

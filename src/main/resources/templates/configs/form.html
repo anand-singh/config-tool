@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Messages : Create</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<h1 layout:fragment="header">Config Tree : Create</h1>
+		<form id="configToolForm" th:action="@{/configuration/(form)}" th:object="${configTreeDomain}" action="#" method="post">
+			<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">
+					Validation error
+				</p>
+			</div>
+			<div class="pull-right">
+				<a th:href="@{/configuration}" href="configuration.html"> Config Tool </a>
+			</div>
+			<input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" /> 
+			<input type="hidden" th:field="*{parentId}" th:class="${#fields.hasErrors('parentId')} ? 'field-error'" /> 
+			<input type="hidden" th:field="*{nodeLevel}" th:class="${#fields.hasErrors('nodeLevel')} ? 'field-error'" /> 
+			<label for="summary">Root</label> 
+			<select th:field="*{root}" th:class="${#fields.hasErrors('root')} ? 'field-error'">
+	            <option th:each="option : ${rootOptions}" th:value="${option.getOption()}" 
+	                    th:text="${option.getOptionName()}">Options</option>
+        	</select>
+			<label for="text">Component</label>
+			<textarea th:field="*{component}" th:class="${#fields.hasErrors('component')} ? 'field-error'"></textarea>
+			<div class="form-actions"> 
+				<input type="submit" value="Save" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>
