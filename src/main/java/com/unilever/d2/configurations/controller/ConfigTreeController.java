@@ -41,7 +41,7 @@ public class ConfigTreeController {
 
 	@Autowired
 	private ConfigTreeRepository configTreeRepository;
-	
+
 	@Autowired
 	private RootMasterRepository rootMasterRepository;
 
@@ -53,25 +53,27 @@ public class ConfigTreeController {
 
 	@RequestMapping(params = "form", method = RequestMethod.GET)
 	public String createForm(@ModelAttribute ConfigTreeDomain configTreeDomain, Model model) {
-		List<SearchOptions> searchOptionsList = new ArrayList<>(); 
-		List<String> authoritiesList = new ArrayList<>(); 
-		 for (RootMaster rootMaster : rootMasterRepository.findAll()) { 
-		       searchOptionsList.add(new SearchOptions(rootMaster.getId(), rootMaster.getDescription())); 
-		       authoritiesList.add(rootMaster.getId()); 
-		} 
-		model.addAttribute("rootOptions", searchOptionsList); 
-		model.addAttribute("selectedOptionsList", authoritiesList);
+		List<SearchOptions> searchOptionsList = rootMastersAsSearchOptions();
+		model.addAttribute("rootOptions", searchOptionsList);
 		return "configs/form";
 	}
-	
+
+	private List<SearchOptions> rootMastersAsSearchOptions() {
+		List<SearchOptions> searchOptionsList = new ArrayList<>();
+		for (RootMaster rootMaster : rootMasterRepository.findAll()) {
+			searchOptionsList.add(new SearchOptions(rootMaster.getId(), rootMaster.getDescription()));
+		}
+		return searchOptionsList;
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView create(@Valid ConfigTreeDomain configTreeDomain, BindingResult result,
 			RedirectAttributes redirect) {
 		if (result.hasErrors()) {
 			return new ModelAndView("configs/form", "formErrors", result.getAllErrors());
 		}
-		
-		//configTree = configTreeRepository.save(configTree);
+
+		// configTree = configTreeRepository.save(configTree);
 		redirect.addFlashAttribute("globalMessage", "Successfully created a new message");
 		return new ModelAndView("redirect:/{configTreeDomain.id}", "configTreeDomain.id", configTreeDomain.getId());
 	}
@@ -81,7 +83,7 @@ public class ConfigTreeController {
 		ConfigTree configTree = configTreeRepository.findOne(id);
 		return new ModelAndView("configs/view", "configTree", configTree);
 	}
-	
+
 	@RequestMapping(value = "modify/{id}", method = RequestMethod.GET)
 	public ModelAndView modifyForm(@PathVariable("id") ConfigTree configTree) {
 		return new ModelAndView("configs/form", "configTree", configTree);

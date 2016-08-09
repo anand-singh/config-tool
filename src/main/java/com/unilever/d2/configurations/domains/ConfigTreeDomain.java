@@ -74,6 +74,7 @@ public class ConfigTreeDomain implements Serializable {
 		this.component = component;
 	}
 
+	@NotEmpty(message = "Environment is required.")
 	public String getEnvironment() {
 		return environment;
 	}
@@ -82,6 +83,7 @@ public class ConfigTreeDomain implements Serializable {
 		this.environment = environment;
 	}
 
+	@NotEmpty(message = "Brand is required.")
 	public String getBrand() {
 		return brand;
 	}
@@ -90,6 +92,7 @@ public class ConfigTreeDomain implements Serializable {
 		this.brand = brand;
 	}
 
+	@NotEmpty(message = "Locale is required.")
 	public String getLocale() {
 		return locale;
 	}
@@ -98,6 +101,7 @@ public class ConfigTreeDomain implements Serializable {
 		this.locale = locale;
 	}
 
+	@NotEmpty(message = "Entity is required.")
 	public String getEntity() {
 		return entity;
 	}
