@@ -30,6 +30,7 @@ import com.unilever.d2.configurations.entities.BrandMaster;
 import com.unilever.d2.configurations.entities.ComponentMaster;
 import com.unilever.d2.configurations.entities.ConfigTree;
 import com.unilever.d2.configurations.entities.EntityMaster;
+import com.unilever.d2.configurations.entities.Environment;
 import com.unilever.d2.configurations.entities.KeyMaster;
 import com.unilever.d2.configurations.entities.LocaleMaster;
 import com.unilever.d2.configurations.entities.RootMaster;
@@ -37,6 +38,7 @@ import com.unilever.d2.configurations.repository.BrandMasterRepository;
 import com.unilever.d2.configurations.repository.ComponentMasterRepository;
 import com.unilever.d2.configurations.repository.ConfigTreeRepository;
 import com.unilever.d2.configurations.repository.EntityMasterRepository;
+import com.unilever.d2.configurations.repository.EnvironmentRepository;
 import com.unilever.d2.configurations.repository.KeyMasterRepository;
 import com.unilever.d2.configurations.repository.LocaleMasterRepository;
 import com.unilever.d2.configurations.repository.RootMasterRepository;
@@ -54,21 +56,24 @@ public class ConfigTreeController {
 
 	@Autowired
 	private RootMasterRepository rootMasterRepository;
-	
+
 	@Autowired
 	private ComponentMasterRepository compMasterRepository;
-	
+
 	@Autowired
 	private BrandMasterRepository brandMasterRepository;
-	
+
 	@Autowired
 	private EntityMasterRepository entityMasterRepository;
-	
+
 	@Autowired
 	private KeyMasterRepository keyMasterRepository;
-	
+
 	@Autowired
 	private LocaleMasterRepository localeMasterRepository;
+
+	@Autowired
+	private EnvironmentRepository environmentRepository;
 
 	@RequestMapping
 	public ModelAndView list() {
@@ -78,18 +83,13 @@ public class ConfigTreeController {
 
 	@RequestMapping(params = "form", method = RequestMethod.GET)
 	public String createForm(@ModelAttribute ConfigTreeDomain configTreeDomain, Model model) {
-		List<SearchOptions> rootOptions = rootMastersAsSearchOptions();
-		List<SearchOptions> compOptions = compMastersAsSearchOptions();
-		List<SearchOptions> brandOptions = brandMastersAsSearchOptions();
-		List<SearchOptions> entityOptions = entityMastersAsSearchOptions();
-		List<SearchOptions> keyOptions = keyMastersAsSearchOptions();
-		List<SearchOptions> localeOptions = localeMastersAsSearchOptions();
-		model.addAttribute("localeOptions", localeOptions);
-		model.addAttribute("keyOptions", keyOptions);
-		model.addAttribute("entityOptions", entityOptions);
-		model.addAttribute("brandOptions", brandOptions);
-		model.addAttribute("rootOptions", rootOptions);
-		model.addAttribute("compOptions", compOptions);
+		model.addAttribute("envOptions", environmentsAsSearchOptions());
+		model.addAttribute("localeOptions", localeMastersAsSearchOptions());
+		model.addAttribute("keyOptions", keyMastersAsSearchOptions());
+		model.addAttribute("entityOptions", entityMastersAsSearchOptions());
+		model.addAttribute("brandOptions", brandMastersAsSearchOptions());
+		model.addAttribute("rootOptions", rootMastersAsSearchOptions());
+		model.addAttribute("compOptions", compMastersAsSearchOptions());
 		return "configs/form";
 	}
 
@@ -100,7 +100,7 @@ public class ConfigTreeController {
 		}
 		return searchOptionsList;
 	}
-	
+
 	private List<SearchOptions> compMastersAsSearchOptions() {
 		List<SearchOptions> searchOptionsList = new ArrayList<>();
 		for (ComponentMaster compMaster : compMasterRepository.findAll()) {
@@ -108,7 +108,7 @@ public class ConfigTreeController {
 		}
 		return searchOptionsList;
 	}
-	
+
 	private List<SearchOptions> brandMastersAsSearchOptions() {
 		List<SearchOptions> searchOptionsList = new ArrayList<>();
 		for (BrandMaster brandMaster : brandMasterRepository.findAll()) {
@@ -116,7 +116,7 @@ public class ConfigTreeController {
 		}
 		return searchOptionsList;
 	}
-	
+
 	private List<SearchOptions> entityMastersAsSearchOptions() {
 		List<SearchOptions> searchOptionsList = new ArrayList<>();
 		for (EntityMaster entityMaster : entityMasterRepository.findAll()) {
@@ -124,7 +124,7 @@ public class ConfigTreeController {
 		}
 		return searchOptionsList;
 	}
-	
+
 	private List<SearchOptions> keyMastersAsSearchOptions() {
 		List<SearchOptions> searchOptionsList = new ArrayList<>();
 		for (KeyMaster keyMaster : keyMasterRepository.findAll()) {
@@ -132,11 +132,19 @@ public class ConfigTreeController {
 		}
 		return searchOptionsList;
 	}
-	
+
 	private List<SearchOptions> localeMastersAsSearchOptions() {
 		List<SearchOptions> searchOptionsList = new ArrayList<>();
 		for (LocaleMaster localeMaster : localeMasterRepository.findAll()) {
 			searchOptionsList.add(new SearchOptions(localeMaster.getId(), localeMaster.getDescription()));
+		}
+		return searchOptionsList;
+	}
+
+	private List<SearchOptions> environmentsAsSearchOptions() {
+		List<SearchOptions> searchOptionsList = new ArrayList<>();
+		for (Environment environment : environmentRepository.findAll()) {
+			searchOptionsList.add(new SearchOptions(environment.getId(), environment.getDescription()));
 		}
 		return searchOptionsList;
 	}

@@ -48,9 +48,9 @@
 						    <div class="form-group">
 						      <label for="root" class="col-lg-2 control-label">Environment</label>
 						      <div class="col-lg-10">
-						        <select th:field="*{root}" class="form-control">
+						        <select th:field="*{environment}" class="form-control">
 									<option value="" th:text="Select"></option>
-					            	<option th:each="option : ${rootOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
+					            	<option th:each="option : ${envOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
 				        		</select>
 						      </div>
 						    </div>
