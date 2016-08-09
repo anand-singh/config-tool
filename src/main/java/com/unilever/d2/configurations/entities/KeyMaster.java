@@ -16,37 +16,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author ssi234
- * Created Date Jul 14, 2016
- * com.unilever.d2.configuration.domain
- * KeyMaster
+ * @author ssi234 Created Date Jul 14, 2016 com.unilever.d2.configuration.domain
+ *         KeyMaster
  */
 @Entity
-@Table(name="[Cnf.KeyMaster]")
+@Table(name = "[Cnf.KeyMaster]")
 public class KeyMaster implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "KEY_NAME", length = 50)
-	private String keyName;
-	
+	private String id;
+
 	@Column(name = "KEY_DESCRIPTION", nullable = true, length = 50)
-	private String keyDescription;
+	private String description;
 
-	public String getKeyName() {
-		return keyName;
+	public String getId() {
+		return id;
 	}
 
-	public void setKeyName(String keyName) {
-		this.keyName = keyName;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getKeyDescription() {
-		return keyDescription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setKeyDescription(String keyDescription) {
-		this.keyDescription = keyDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
 }

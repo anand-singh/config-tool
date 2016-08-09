@@ -39,9 +39,9 @@
 						    <div class="form-group">
 						      <label for="root" class="col-lg-2 control-label">Component</label>
 						      <div class="col-lg-10">
-						        <select th:field="*{root}" class="form-control">
+						        <select th:field="*{component}" class="form-control">
 									<option value="" th:text="Select"></option>
-					            	<option th:each="option : ${rootOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
+					            	<option th:each="option : ${compOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
 				        		</select>
 						      </div>
 						    </div>
@@ -57,27 +57,27 @@
 						    <div class="form-group">
 						      <label for="root" class="col-lg-2 control-label">Brand</label>
 						      <div class="col-lg-10">
-						        <select th:field="*{root}" class="form-control">
+						        <select th:field="*{brand}" class="form-control">
 									<option value="" th:text="Select"></option>
-					            	<option th:each="option : ${rootOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
+					            	<option th:each="option : ${brandOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
 				        		</select>
 						      </div>
 						    </div>
 						    <div class="form-group">
 						      <label for="root" class="col-lg-2 control-label">Locale</label>
 						      <div class="col-lg-10">
-						        <select th:field="*{root}" class="form-control">
+						        <select th:field="*{locale}" class="form-control">
 									<option value="" th:text="Select"></option>
-					            	<option th:each="option : ${rootOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
+					            	<option th:each="option : ${localeOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
 				        		</select>
 						      </div>
 						    </div>
 						    <div class="form-group">
 						      <label for="root" class="col-lg-2 control-label">Entity</label>
 						      <div class="col-lg-10">
-						        <select th:field="*{root}" class="form-control">
+						        <select th:field="*{entity}" class="form-control">
 									<option value="" th:text="Select"></option>
-					            	<option th:each="option : ${rootOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
+					            	<option th:each="option : ${entityOptions}" th:value="${option.getOption()}" th:text="${option.getOptionName()}">Options</option>
 				        		</select>
 						      </div>
 						    </div>

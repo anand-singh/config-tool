@@ -26,9 +26,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unilever.d2.configurations.domains.ConfigTreeDomain;
 import com.unilever.d2.configurations.domains.SearchOptions;
+import com.unilever.d2.configurations.entities.BrandMaster;
+import com.unilever.d2.configurations.entities.ComponentMaster;
 import com.unilever.d2.configurations.entities.ConfigTree;
+import com.unilever.d2.configurations.entities.EntityMaster;
+import com.unilever.d2.configurations.entities.KeyMaster;
+import com.unilever.d2.configurations.entities.LocaleMaster;
 import com.unilever.d2.configurations.entities.RootMaster;
+import com.unilever.d2.configurations.repository.BrandMasterRepository;
+import com.unilever.d2.configurations.repository.ComponentMasterRepository;
 import com.unilever.d2.configurations.repository.ConfigTreeRepository;
+import com.unilever.d2.configurations.repository.EntityMasterRepository;
+import com.unilever.d2.configurations.repository.KeyMasterRepository;
+import com.unilever.d2.configurations.repository.LocaleMasterRepository;
 import com.unilever.d2.configurations.repository.RootMasterRepository;
 
 /**
@@ -44,6 +54,21 @@ public class ConfigTreeController {
 
 	@Autowired
 	private RootMasterRepository rootMasterRepository;
+	
+	@Autowired
+	private ComponentMasterRepository compMasterRepository;
+	
+	@Autowired
+	private BrandMasterRepository brandMasterRepository;
+	
+	@Autowired
+	private EntityMasterRepository entityMasterRepository;
+	
+	@Autowired
+	private KeyMasterRepository keyMasterRepository;
+	
+	@Autowired
+	private LocaleMasterRepository localeMasterRepository;
 
 	@RequestMapping
 	public ModelAndView list() {
@@ -53,8 +78,18 @@ public class ConfigTreeController {
 
 	@RequestMapping(params = "form", method = RequestMethod.GET)
 	public String createForm(@ModelAttribute ConfigTreeDomain configTreeDomain, Model model) {
-		List<SearchOptions> searchOptionsList = rootMastersAsSearchOptions();
-		model.addAttribute("rootOptions", searchOptionsList);
+		List<SearchOptions> rootOptions = rootMastersAsSearchOptions();
+		List<SearchOptions> compOptions = compMastersAsSearchOptions();
+		List<SearchOptions> brandOptions = brandMastersAsSearchOptions();
+		List<SearchOptions> entityOptions = entityMastersAsSearchOptions();
+		List<SearchOptions> keyOptions = keyMastersAsSearchOptions();
+		List<SearchOptions> localeOptions = localeMastersAsSearchOptions();
+		model.addAttribute("localeOptions", localeOptions);
+		model.addAttribute("keyOptions", keyOptions);
+		model.addAttribute("entityOptions", entityOptions);
+		model.addAttribute("brandOptions", brandOptions);
+		model.addAttribute("rootOptions", rootOptions);
+		model.addAttribute("compOptions", compOptions);
 		return "configs/form";
 	}
 
@@ -62,6 +97,46 @@ public class ConfigTreeController {
 		List<SearchOptions> searchOptionsList = new ArrayList<>();
 		for (RootMaster rootMaster : rootMasterRepository.findAll()) {
 			searchOptionsList.add(new SearchOptions(rootMaster.getId(), rootMaster.getDescription()));
+		}
+		return searchOptionsList;
+	}
+	
+	private List<SearchOptions> compMastersAsSearchOptions() {
+		List<SearchOptions> searchOptionsList = new ArrayList<>();
+		for (ComponentMaster compMaster : compMasterRepository.findAll()) {
+			searchOptionsList.add(new SearchOptions(compMaster.getId(), compMaster.getDescription()));
+		}
+		return searchOptionsList;
+	}
+	
+	private List<SearchOptions> brandMastersAsSearchOptions() {
+		List<SearchOptions> searchOptionsList = new ArrayList<>();
+		for (BrandMaster brandMaster : brandMasterRepository.findAll()) {
+			searchOptionsList.add(new SearchOptions(brandMaster.getId(), brandMaster.getDescription()));
+		}
+		return searchOptionsList;
+	}
+	
+	private List<SearchOptions> entityMastersAsSearchOptions() {
+		List<SearchOptions> searchOptionsList = new ArrayList<>();
+		for (EntityMaster entityMaster : entityMasterRepository.findAll()) {
+			searchOptionsList.add(new SearchOptions(entityMaster.getId(), entityMaster.getDescription()));
+		}
+		return searchOptionsList;
+	}
+	
+	private List<SearchOptions> keyMastersAsSearchOptions() {
+		List<SearchOptions> searchOptionsList = new ArrayList<>();
+		for (KeyMaster keyMaster : keyMasterRepository.findAll()) {
+			searchOptionsList.add(new SearchOptions(keyMaster.getId(), keyMaster.getDescription()));
+		}
+		return searchOptionsList;
+	}
+	
+	private List<SearchOptions> localeMastersAsSearchOptions() {
+		List<SearchOptions> searchOptionsList = new ArrayList<>();
+		for (LocaleMaster localeMaster : localeMasterRepository.findAll()) {
+			searchOptionsList.add(new SearchOptions(localeMaster.getId(), localeMaster.getDescription()));
 		}
 		return searchOptionsList;
 	}
