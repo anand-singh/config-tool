@@ -2,12 +2,89 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Messages : View</title>
+<title>Configurations : View</title>
 </head>
 <body>
-	<h1 layout:fragment="header">Messages : Create</h1>
 	<div layout:fragment="content" class="container">
-		sdcsdsd
+		<br /> <br />
+		<div class="page-header">
+			<h1>Configurations : View</h1>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Details View</h3>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped">
+								<colgroup>
+									<col class="col-xs-1" />
+									<col class="col-xs-7" />
+								</colgroup>
+								<!-- <thead>
+									<tr>
+										<th>Class</th>
+										<th>Description</th>
+									</tr>
+								</thead> -->
+								<tbody>
+									<tr>
+										<th scope="row">Root</th>
+										<td th:text="${configTree.rootMaster?.description}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Component</th>
+										<td th:text="${configTree.componentMaster?.description}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Environment</th>
+										<td th:text="${configTree.environment?.description}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Brand</th>
+										<td th:text="${configTree.brandMaster?.description}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Locale</th>
+										<td th:text="${configTree.localeMaster?.description}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Entity</th>
+										<td th:text="${configTree.entityMaster?.description}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Created</th>
+										<td th:text="${#calendars.format(configTree.createdDate)}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Updated</th>
+										<td th:text="${#calendars.format(configTree.updatedDate)}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<h3 class="panel-title">Informations</h3>
+					</div>
+					<div class="panel-body">
+						<p>Raw denim you probably haven't heard of them jean shorts
+							Austin. Nesciunt tofu stumptown aliqua, retro synth master
+							cleanse. Mustache cliche tempor, williamsburg carles vegan
+							helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+							synth. Cosby sweater eu banh mi, qui irure terry richardson ex
+							squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis
+							cardigan american apparel, butcher voluptate nisi qui.</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
