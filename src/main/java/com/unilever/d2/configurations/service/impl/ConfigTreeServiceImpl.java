@@ -8,8 +8,10 @@
  *******************************************************************************/
 package com.unilever.d2.configurations.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.unilever.d2.configurations.repository.ConfigTreeRepository;
 import com.unilever.d2.configurations.service.ConfigTreeService;
 
 /**
@@ -20,5 +22,9 @@ import com.unilever.d2.configurations.service.ConfigTreeService;
  */
 @Service
 public class ConfigTreeServiceImpl implements ConfigTreeService {
+	
+	@Autowired
+	private ConfigTreeRepository configTreeRepository;
+	
 
 }
