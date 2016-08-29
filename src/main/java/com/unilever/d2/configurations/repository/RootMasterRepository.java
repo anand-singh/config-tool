@@ -18,6 +18,6 @@ import com.unilever.d2.configurations.entities.RootMaster;
  * com.unilever.d2.configuration.repository
  * RootMasterRepository
  */
-public interface RootMasterRepository extends CrudRepository<RootMaster, Long> {
+public interface RootMasterRepository extends CrudRepository<RootMaster, String> {
 
 }

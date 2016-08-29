@@ -18,6 +18,6 @@ import com.unilever.d2.configurations.entities.KeyMaster;
  * com.unilever.d2.configuration.repository
  * KeyMasterRepository
  */
-public interface KeyMasterRepository extends CrudRepository<KeyMaster, Long> {
+public interface KeyMasterRepository extends CrudRepository<KeyMaster, String> {
 
 }

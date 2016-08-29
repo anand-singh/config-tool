@@ -18,6 +18,6 @@ import com.unilever.d2.configurations.entities.EntityMaster;
  * com.unilever.d2.configuration.repository
  * EntityMasterRepository
  */
-public interface EntityMasterRepository extends CrudRepository<EntityMaster, Long> {
+public interface EntityMasterRepository extends CrudRepository<EntityMaster, String> {
 
 }

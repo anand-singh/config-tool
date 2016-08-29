@@ -18,6 +18,6 @@ import com.unilever.d2.configurations.entities.Environment;
  * com.unilever.d2.configuration.repository
  * EnvironmentMasterRepository
  */
-public interface EnvironmentRepository extends CrudRepository<Environment, Long> {
+public interface EnvironmentRepository extends CrudRepository<Environment, String> {
 
 }

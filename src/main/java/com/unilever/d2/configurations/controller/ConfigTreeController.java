@@ -155,8 +155,14 @@ public class ConfigTreeController {
 		if (result.hasErrors()) {
 			return new ModelAndView("configs/form", "formErrors", result.getAllErrors());
 		}
-
-		// configTree = configTreeRepository.save(configTree);
+		
+		ConfigTree configTree = new ConfigTree();
+		configTree.setBrandMaster(brandMasterRepository.findOne(configTreeDomain.getBrand()));
+		configTree.setBrandMaster(brandMasterRepository.findOne(configTreeDomain.getBrand()));
+		configTree.setBrandMaster(brandMasterRepository.findOne(configTreeDomain.getBrand()));
+		configTree.setBrandMaster(brandMasterRepository.findOne(configTreeDomain.getBrand()));
+		configTree.setBrandMaster(brandMasterRepository.findOne(configTreeDomain.getBrand()));
+		configTree = configTreeRepository.save(configTree);
 		redirect.addFlashAttribute("globalMessage", "Successfully created a new message");
 		return new ModelAndView("redirect:/{configTreeDomain.id}", "configTreeDomain.id", configTreeDomain.getId());
 	}

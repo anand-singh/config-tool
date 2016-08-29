@@ -18,6 +18,6 @@ import com.unilever.d2.configurations.entities.BrandMaster;
  * com.unilever.d2.configuration.repository
  * BrandMasterRepository
  */
-public interface BrandMasterRepository extends CrudRepository<BrandMaster, Long> {
+public interface BrandMasterRepository extends CrudRepository<BrandMaster, String> {
 
 }

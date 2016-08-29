@@ -18,6 +18,6 @@ import com.unilever.d2.configurations.entities.LocaleMaster;
  * com.unilever.d2.configuration.repository
  * LocaleMasterRepository
  */
-public interface LocaleMasterRepository extends CrudRepository<LocaleMaster, Long> {
+public interface LocaleMasterRepository extends CrudRepository<LocaleMaster, String> {
 
 }
